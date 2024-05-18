@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  S1:
+    build: ./S1
+    env_file: ./S1/.env
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./S1/logs:/app/logs
+
+  S2:
+    build: ./S2
+    depends_on:
+      - S1
+
+  S3:
+    build: ./S3
+    depends_on:
+      - S1
